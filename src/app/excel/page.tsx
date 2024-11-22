@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 import * as xlsx from "xlsx";
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -38,26 +39,22 @@ export default function Excel() {
 
     const askGroq = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
-        console.log(query);
         await axios.post("/api/askQuestion", {jsonData, query})
         .then(response => {
             if (response.status === 200) {
                 setAnswer(response.data.answer);
+                toast.success("");
             }
         })
         .catch(error => {
             if (error.status === 500) {
-                console.log(error);
+                toast.error("");
             }
         })
         .finally(() => {
-            console.log("API Call Finished!");
+            toast.success("");
         });
     }
-
-    useEffect(() => {
-        console.log(jsonData);
-    }, [jsonData]);
 
     return (
         <div className="w-full h-screen flex items-center justify-center">
