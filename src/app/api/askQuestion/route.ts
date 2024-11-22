@@ -10,7 +10,7 @@ async function getGroqChatCompletion(jsonData: string, query: string) {
         messages: [
             {
                 role: "user",
-                content: `Here's the data : ${JSON.stringify(jsonData)}\n${query}`,
+                content: `Here's the data (consider this a table and make your answer to the point) : ${JSON.stringify(jsonData)}\n${query}`,
             },
         ],
         model: "llama3-8b-8192",
