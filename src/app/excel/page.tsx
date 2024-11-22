@@ -8,9 +8,9 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 export default function Excel() {
-    const [jsonData, setJsonData] = useState<any>(null);
-    const [filename, setFilename] = useState<String>("");
-    const [fileClicked, setFileClicked] = useState<Boolean>(false);
+    const [jsonData, setJsonData] = useState<null | any>(null);
+    const [filename, setFilename] = useState<string>("");
+    const [fileClicked, setFileClicked] = useState<boolean>(false);
     const [query, setQuery] = useState<string | number>("");
     const [answer, setAnswer] = useState<string>("");
 
