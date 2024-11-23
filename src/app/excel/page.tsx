@@ -57,7 +57,7 @@ export default function Excel() {
     }
 
     return (
-        <div className="w-full h-screen flex items-center justify-center">
+        <div className="w-full h-[100svh] pb-1 flex items-center justify-center">
 
             <form className="w-full h-full flex flex-col gap-5 p-5 relative">
                 <p className={fileClicked ? "flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border rounded-lg" : "hidden"}>
