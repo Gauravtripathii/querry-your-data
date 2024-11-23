@@ -1,6 +1,6 @@
 "use client";
 
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 export default function Home() {
   return (
