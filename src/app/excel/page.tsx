@@ -37,7 +37,7 @@ export default function Excel() {
         setFileClicked(!fileClicked);
     }
 
-    const askGroq = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const askGroq = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLInputElement>) => {
         event.preventDefault();
         await axios.post("/api/askQuestion", {jsonData, query})
         .then(response => {
@@ -60,12 +60,13 @@ export default function Excel() {
         <div className="w-full h-[100svh] pb-1 flex items-center justify-center">
 
             <form className="w-full h-full flex flex-col gap-5 p-5 relative">
-                <p className={fileClicked ? "flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border rounded-lg" : "hidden"}>
+                <p className={fileClicked ? "flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-black rounded-lg" : "hidden"}>
                     <input type="file" name="upload" id="upload" onChange={readUploadFile} />
                 </p>
                 <div className="h-full w-full border rounded-lg p-3">
                     {/* <p className={query ? "" : "hidden"}>Query:<br />{query}</p> */}
-                    <p className={answer ? "" : "hidden"}>{answer}</p>
+                    <p className={answer ? "" : "hidden"} dangerouslySetInnerHTML={{ __html: answer }}></p>
+                    <p className={!answer && query && filename ? "" : "hidden"}>Loading...</p>
                 </div>
                 {/* MAIN OF QUERY */}
                 <div className="flex gap-2 relative">
@@ -73,7 +74,7 @@ export default function Excel() {
                     <div className={jsonData ? "border rounded-md p-2 absolute -top-[120%] -left-2" : "hidden"}>
                         <span>{filename}</span>
                     </div>
-                    <button onClick={fileBtnClicked}><AttachFileIcon /></button>
+                    <span className="cursor-pointer" onClick={fileBtnClicked}><AttachFileIcon /></span>
                     <input
                         type="text"
                         placeholder="Enter your query here!"

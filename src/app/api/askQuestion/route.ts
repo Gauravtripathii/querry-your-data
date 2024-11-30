@@ -10,7 +10,8 @@ async function getGroqChatCompletion(jsonData: string, query: string) {
         messages: [
             {
                 role: "user",
-                content: `Here's the data (consider this a table and make your answer to the point) : ${JSON.stringify(jsonData)}\n${query}`,
+                // content: `Here's the data (consider this a table and make your answer to the point) : ${JSON.stringify(jsonData)}\n${query}. If it is required to print the table, just return pure plain html, nothing else, but only if required? And never mention the query that is being provided`,
+                content: `Here's the data (consider this a table and make your answer to the point) : ${JSON.stringify(jsonData)}\n${query}. Return answer in the form of HTML. DO NOT MENTION THAT ANSWER IS IN FORM OF HTML, JUS RETURN ANSWER`,
             },
         ],
         model: "llama3-8b-8192",
